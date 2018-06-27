@@ -17,7 +17,9 @@ var detectNetwork = function(cardNumber) {
   if(cardNumber.length === 15 && cardNumber[0] + cardNumber[1] === '34' || cardNumber[0] + cardNumber[1] === '37'){
     return 'American Express';
   }
+  if(cardNumber[0] === '4' && cardNumber.length === 13 || cardNumber.length === 19){
+    return 'Visa';
+  }
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
-
 
