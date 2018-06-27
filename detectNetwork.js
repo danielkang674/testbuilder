@@ -17,6 +17,7 @@ var detectNetwork = function(cardNumber) {
   let firstThreeDigits = cardNumber[0] + cardNumber[1] + cardNumber[2];
   const discoverThreeDigits = ['644', '645', '646', '647', '648', '649'];
   const masterTwoDigits = ['51', '52', '53', '54', '55'];
+  const maestroFourDigits = ['5018', '5020', '5038', '6304'];
   function checkDigits(array, numbers){
     for(let value of array){
       if(value === numbers){
@@ -68,6 +69,12 @@ var detectNetwork = function(cardNumber) {
     }
     if(checkDigits(discoverThreeDigits, firstThreeDigits)){
       return 'Discover';
+    }
+  }
+
+  for(let i = 0; i < maestroFourDigits.length; i++){
+    if(maestroFourDigits[i] === firstFourDigits && cardNumber.length >= 12 && cardNumber.length <= 19){
+      return 'Maestro';
     }
   }
   // Once you've read this, go ahead and try to implement this function, then return to the console.
