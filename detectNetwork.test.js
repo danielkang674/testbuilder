@@ -201,8 +201,5 @@ describe('China UnionPay', function(){
       })(index, length);
     }
   }
-  it('has a prefix of ' + prefix + ' and a length of ' + length, function(){
-    expect(detectNetwork(prefix + ints)).to.equal('China UnionPay');
-  });
 });
 describe('support Switch')
