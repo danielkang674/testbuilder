@@ -180,7 +180,7 @@ describe('Maestro', function() {
 
 describe('China UnionPay', function(){
   let prefix = [];
-  let numLength = [16, 18, 19];
+  let numLength = [16, 17, 18, 19];
   let ints = '1234567890123456';
   for(let i = 622126; i <= 622925; i++){
     prefix.push(i.toString());
