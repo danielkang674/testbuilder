@@ -18,6 +18,16 @@ var detectNetwork = function(cardNumber) {
   const discoverThreeDigits = ['644', '645', '646', '647', '648', '649'];
   const masterTwoDigits = ['51', '52', '53', '54', '55'];
   const maestroFourDigits = ['5018', '5020', '5038', '6304'];
+  let chinaPrefixes = [];
+  for(let j = 622126; j <= 622925; j++){
+    chinaPrefixes.push(j.toString());
+  }
+  chinaPrefixes.push('624');
+  chinaPrefixes.push('625');
+  chinaPrefixes.push('626');
+  for(let k = 6282; k <= 6288; k++){
+    chinaPrefixes.push(k.toString());
+  }
   function checkDigits(array, numbers){
     for(let value of array){
       if(value === numbers){
