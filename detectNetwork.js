@@ -21,11 +21,14 @@ var detectNetwork = function(cardNumber) {
     if(firstTwoDigits === '34' || firstTwoDigits === '37'){
       return 'American Express';
   }
-  if(cardNumber[0] === '4')
-    if(cardNumber.length === 13 || cardNumber.length === 19 || cardNumber.length === 16){
+  if(cardNumber.length === 13 || cardNumber.length === 19)
+    if(cardNumber[0] === '4'){
       return 'Visa';
   }
   if(cardNumber.length === 16){
+    if(cardNumber[0] === '4'){
+      return 'Visa';
+    }
     for(let i = 0; i < MCDIGITS.length; i++){
       if(firstTwoDigits === MCDIGITS[i]){
         return 'MasterCard';
