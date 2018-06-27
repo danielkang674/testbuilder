@@ -20,25 +20,23 @@ describe('Introduction to Mocha Tests - READ ME FIRST', function() {
   // it('Throws an error so it fails', function() {
   //   throw new Error('Delete me!');
   // });
-
+  var expect = chai.expect;
   it('Doesn\'t throw an error, so it doesn\'t fail', function() {
     // This test doesn't really test anything at all! It will pass no matter what.
     var even = function(num){
-      return num/2 === 0;
+      return num%2 === 0;
     }
-    return even(10) === true;
+    expect(even(10)).to.equal(true);
   });
 
   // In tests, we want to compare the expected behavior to the actual behavior.
-  // A test should only fail if the expected behavior doesn't match the actual.
+  // A test shld only fail if the expected behavior doesn't match the actual.
   it('Throws an error when expected behavior does not match actual behavior', function() {
     var even = function(num){
       return num%2 === 0;
     }
 
-    if(even(10) !== true) {
-      throw new Error('10 should be even!');
-    }
+    expect(even(10)).to.equal(true);
   });
 });
 describe('Diner\'s Club', function() {
@@ -117,14 +115,14 @@ describe('MasterCard', function() {
   });
  
 
-  // You can also use should instead of expect, which changes the style
+  // You can also use shld instead of expect, which changes the style
   // slightly. It really doesn't matter which one you use - check out 
   // http://chaijs.com/guide/styles/ for more info, but it's important
   // to be consistent (unlike in this file, where we use BOTH expect
-  // and should, but that's just for learning), so once you've gotten 
-  // these tests to pass using should syntax, refactor your tests to 
-  // use either expect or should, but not both. 
-  var should = chai.should();
+  // and shld, but that's just for learning), so once you've gotten 
+  // these tests to pass using shld syntax, refactor your tests to 
+  // use either expect or shld, but not both. 
+  // var shld = chai.shld();
   
   it('has a prefix of 54 and a length of 16', function() {
     expect(detectNetwork('5412345678901234')).to.equal('MasterCard');
@@ -166,7 +164,19 @@ describe('Discover', function() {
 
 describe('Maestro', function() {
   // Write full test coverage for the Maestro card
+  const expect = chai.expect;
+  const prefix = ['5018', '5020', '5038', '6304'];
+  const ints = '012345678901234';
+  for(let length = 12; length <= 19; length++){
+    for(let index = 0; index < prefix.length; index++){
+      (function(length, index){
+        it('has a prefix of ' + prefix[index] + ' and a length of ' + length, function(){
+          expect(detectNetwork(prefix[index] + ints.slice(0, length - 3))).to.equal('Maestro');
+        });
+      })(length, index);
+    }
+  }
 });
 
-describe('should support China UnionPay')
-describe('should support Switch')
+describe('support China UnionPay')
+describe('support Switch')
