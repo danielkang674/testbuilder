@@ -14,7 +14,7 @@ var detectNetwork = function(cardNumber) {
   let firstTwoDigits = cardNumber[0] + cardNumber[1];
   let firstOneDigit = cardNumber[0];
   let firstFourDigits = cardNumber[0] + cardNumber [1] + cardNumber[2] + cardNumber[3];
-  let firstThreeDigits = cardNumber[0] + cardNumber[1] + cardNumber[2] + cardNumber[3];
+  let firstThreeDigits = cardNumber[0] + cardNumber[1] + cardNumber[2];
   const discoverThreeDigits = ['644', '645', '646', '647', '648', '649'];
   const masterTwoDigits = ['51', '52', '53', '54', '55'];
   function checkDigits(array, numbers){
@@ -58,7 +58,7 @@ var detectNetwork = function(cardNumber) {
       return 'Discover';
     }
   }
-  
+
   if(cardNumber.length === 19){
     if(firstOneDigit === '4'){
       return 'Visa';
