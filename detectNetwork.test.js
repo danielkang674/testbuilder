@@ -171,7 +171,7 @@ describe('Maestro', function() {
     for(let index = 0; index < prefix.length; index++){
       (function(length, index){
         it('has a prefix of ' + prefix[index] + ' and a length of ' + length, function(){
-          expect(detectNetwork(prefix[index] + ints.slice(0, length - 3))).to.equal('Maestro');
+          expect(detectNetwork(prefix[index] + ints.slice(0, length - 4))).to.equal('Maestro');
         });
       })(length, index);
     }
@@ -179,6 +179,7 @@ describe('Maestro', function() {
 });
 
 describe('China UnionPay', function(){
+  const expect = chai.expect;
   let prefix = [];
   let numLength = [16, 17, 18, 19];
   let ints = '1234567890123456';
@@ -196,10 +197,25 @@ describe('China UnionPay', function(){
       (function(index, length){
         let temp = numLength[length] - prefix[index].length; 
         it('has a prefix of ' + prefix[index] + ' and a length of '+ numLength[length], function(){
-          expect(detectNetwork(prefix[index] + ints.slice(0, temp + 1))).to.equal('China UnionPay');
+          expect(detectNetwork(prefix[index] + ints.slice(0, temp))).to.equal('China UnionPay');
         });
       })(index, length);
     }
   }
 });
-describe('support Switch')
+
+describe('Switch', function(){
+  const switchPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
+  const switchLengths = [16, 18, 19];
+  let ints = '012345678901234'
+  for(let i = 0; i < switchPrefixes.length; i++){
+    for(let j = 0; j < switchLengths.length; j++){
+      (function(i, j){
+        let tempLength = switchLengths[j] - switchPrefixes[i].length;
+        it(`it has a prefix of ${switchPrefixes[i]} and a length of ${switchLengths[j]}`, function(){
+          expect(detectNetwork(switchPrefixes[i] + ints.slice(0, tempLength))).to.equal('Switch');
+        });
+      })(i, j);
+    }
+  }
+});
