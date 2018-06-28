@@ -87,6 +87,13 @@ var detectNetwork = function(cardNumber) {
       return 'Maestro';
     }
   }
+
+  for(let l = 0; l < chinaPrefixes.length; l++){
+    let tempNumbers = cardNumber.slice(0, chinaPrefixes[l].length);
+    if(tempNumbers === chinaPrefixes[l] && cardNumber.length >= 16 && cardNumber.length <= 19){
+      return 'China UnionPay';
+    }
+  }
   // Once you've read this, go ahead and try to implement this function, then return to the console.
 };
 
