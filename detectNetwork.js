@@ -18,6 +18,7 @@ var detectNetwork = function(cardNumber) {
   const discoverThreeDigits = ['644', '645', '646', '647', '648', '649'];
   const masterTwoDigits = ['51', '52', '53', '54', '55'];
   const maestroFourDigits = ['5018', '5020', '5038', '6304'];
+  const switchPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
   let chinaPrefixes = [];
   for(let j = 622126; j <= 622925; j++){
     chinaPrefixes.push(j.toString());
@@ -35,6 +36,15 @@ var detectNetwork = function(cardNumber) {
       }
     }
     return false;
+  }
+
+  for(let m = 0; m < switchPrefixes.length; m++){
+    let tempSwitchNumbers = cardNumber.slice(0, switchPrefixes[m].length);
+    if(tempSwitchNumbers === switchPrefixes[m]){
+      if(cardNumber.length === 16 || cardNumber.length === 18 || cardNumber.length === 19){
+        return 'Switch';
+      }
+    }
   }
 
   if(cardNumber.length === 14){

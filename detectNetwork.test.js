@@ -205,6 +205,7 @@ describe('China UnionPay', function(){
 });
 
 describe('Switch', function(){
+  const expect = chai.expect;
   const switchPrefixes = ['4903', '4905', '4911', '4936', '564182', '633110', '6333', '6759'];
   const switchLengths = [16, 18, 19];
   let ints = '012345678901234'
